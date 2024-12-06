@@ -64,4 +64,4 @@ Kontribusi sangat diterima! Silakan buat pull request untuk perubahan besar atau
 4. Buat pull request ke branch utama repositori ini.
 
 ## Lisensi
-Repositori ini menggunakan lisensi MIT.
+Repositori ini menggunakan lisensi [MIT](LICENSE).
