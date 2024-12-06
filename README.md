@@ -28,14 +28,14 @@ Bot Discord multifungsi yang dirancang untuk memberikan fitur seperti menampilka
 1. **Clone repositori ini:**
 
    ```
-   git clone https://github.com/username/repo-name.git
+   git clone https://github.com/iseeface/personal-bot-discord.git
    cd repo-name
 2. **Instal dependensi:**
    ```
    npm install
 3. **isi file .env:**
    ```
-   Isi sesuai dengan instruksi
+   Isi sesuai dengan instruksi yang ada pada file .env.text, jangan lupa ganti .env.txt menjadi .env
 4. **Jalankan bot:**
    ```
    node bot.js
