@@ -27,23 +27,26 @@ Bot Discord multifungsi yang dirancang untuk memberikan fitur seperti menampilka
 
 1. **Clone repositori ini:**
 
-   ```bash
+   ```
    git clone https://github.com/username/repo-name.git
    cd repo-name
 2. **Instal dependensi:**
+   ```
    npm install
 3. **isi file .env:**
+   ```
    Isi sesuai dengan instruksi
 4. **Jalankan bot:**
+   ```
    node bot.js
 
 ## Perintah Penting
 - Registrasi Command ke Discord: Gunakan file registerCommands.js untuk mendaftarkan perintah slash ke server.
-- ```bash
+  ```bash
   node registerCommands.js
 
 - Hapus Command dari Discord: Gunakan file deleteCommands.js untuk menghapus semua perintah slash.
-- ```bash
+  ```bash
   node deleteCommands.js
 
 ## Dependensi
