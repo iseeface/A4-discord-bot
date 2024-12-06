@@ -1,5 +1,7 @@
 # Discord Bot
 
+Hai, ini adalah Repository untuk perjalanan Bot Discord yang saya buat. Kode dalam Repository ini akan berkembang seiring waktu, jadi pantangi terus ya.
+
 Bot Discord multifungsi yang dirancang untuk memberikan fitur seperti menampilkan embed tautan otomatis, mengatur status bot, mengirim Quote of the Day (QOTD), dan berbagai perintah lainnya.  
 
 ## Fitur
@@ -29,7 +31,7 @@ Bot Discord multifungsi yang dirancang untuk memberikan fitur seperti menampilka
 
    ```
    git clone https://github.com/iseeface/personal-bot-discord.git
-   cd repo-name
+   cd personal-bot-discord
 2. **Instal dependensi:**
    ```
    npm install
