@@ -39,7 +39,6 @@ Bot Discord multifungsi yang dirancang untuk memberikan fitur seperti menampilka
 4. **Jalankan bot:**
    ```
    node bot.js
-
 ## Perintah Penting
 - Registrasi Command ke Discord: Gunakan file registerCommands.js untuk mendaftarkan perintah slash ke server.
   ```bash
