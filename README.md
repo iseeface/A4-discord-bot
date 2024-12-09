@@ -1,6 +1,6 @@
 # Discord Bot
 
-Hai, ini adalah Repository untuk perjalanan Bot Discord yang saya buat. Kode dalam Repository ini akan berkembang seiring waktu, jadi pantangi terus ya.
+Hai, ini adalah Repositori untuk perjalanan bot discord yang saya buat. Kode dalam Repositori ini akan berkembang seiring waktu, jadi pantangi terus ya.
 
 Bot Discord multifungsi yang dirancang untuk memberikan fitur seperti menampilkan embed tautan otomatis, mengatur status bot, mengirim Quote of the Day (QOTD), dan berbagai perintah lainnya.  
 
