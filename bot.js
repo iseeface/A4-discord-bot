@@ -3,6 +3,7 @@ const { Client, GatewayIntentBits, Collection } = require('discord.js');
 const { loadCommands } = require('./handlers/commandLoader');
 const { handleEmbed } = require('./handlers/embedHandler');
 const { scheduleQOTD } = require('./handlers/quoteHandler');
+const { scheduleAdzanReminder } = require('./handlers/adzanHandler');
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
 client.commands = new Collection();
@@ -10,10 +11,12 @@ client.commands = new Collection();
 // Load commands
 const commands = loadCommands(client);
 
+
 // Event ready
 client.once('ready', () => {
     console.log(`Bot siap! Login sebagai ${client.user.tag}`);
     scheduleQOTD(client);
+    scheduleAdzanReminder(client);
 });
 
 // Event interactionCreate
