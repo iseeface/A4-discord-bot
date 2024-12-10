@@ -30,9 +30,11 @@ module.exports = {
                             await message.reply(embedUrl);
                         } else {
                             console.error('URL embed tidak ditemukan.');
+                            await message.reply('Maaf, terjadi masalah dalam mengambil embed untuk tautan ini.');
                         }
                     } catch (error) {
                         console.error('Error saat menangani tautan embed:', error);
+                        await message.reply('Maaf, terjadi kesalahan saat memproses tautan embed ini. Coba lagi nanti.');
                     }
                 }
             }
