@@ -14,10 +14,12 @@ Bot Discord multifungsi yang dirancang untuk memberikan fitur seperti menampilka
   - `setstatus` - Mengubah status bot.
   - `toggleembed` - Mengaktifkan/mematikan fitur embed tautan.
   - `qotd` - Mengirimkan Quote of the Day secara manual.
+  - `adzan` - Mengirimkan jadwal adzan dari berbagai daerah.
 
 - **Fitur Otomatis:**
   - Embed otomatis untuk tautan dari platform tertentu seperti Instagram, TikTok, X, Reddit, dan lainnya.
   - Pengiriman otomatis QOTD (Quote of the Day) berdasarkan jadwal.
+  - Pengingat jadwal adzan dan sholat.
 
 
 ## Persyaratan Sistem
