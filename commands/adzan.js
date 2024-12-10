@@ -16,7 +16,7 @@ module.exports = {
 
         try {
             // Menangguhkan interaksi agar tidak timeout
-            await interaction.deferReply({ ephemeral: false });
+            await interaction.deferReply({ ephemeral: true });
 
             // Menggunakan API untuk mendapatkan koordinat lokasi
             const locationResponse = await axios.get(`https://nominatim.openstreetmap.org/search`, {
