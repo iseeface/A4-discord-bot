@@ -36,12 +36,12 @@ async function sendAdzanReminder(client) {
         return;
     }
 
-    const now = moment().tz('Asia/Jakarta');
+    const now = moment().tz('Asia/Jakarta'); // Pastikan menggunakan waktu Jakarta
     const timeFormats = ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'];
     const currentTime = now.format('HH:mm');
 
     for (const timeKey of timeFormats) {
-        const prayerTime = moment(timings[timeKey], 'HH:mm').tz('Asia/Jakarta');
+        const prayerTime = moment(timings[timeKey], 'HH:mm').tz('Asia/Jakarta'); // Konversi waktu adzan ke Jakarta
         const diff = prayerTime.diff(now, 'minutes');
 
         const reminderKey = `${timeKey}-${now.format('YYYY-MM-DD')}`;
@@ -89,7 +89,7 @@ function scheduleAdzanReminder(client) {
         sendAdzanReminder(client);
 
         // Bersihkan cache setiap tengah malam
-        const now = moment().tz('Asia/Jakarta');
+        const now = moment().tz('Asia/Jakarta'); // Pastikan menggunakan waktu Jakarta
         if (now.format('HH:mm') === '00:00') {
             reminderCache.clear();
         }
