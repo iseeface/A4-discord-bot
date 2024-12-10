@@ -6,16 +6,15 @@ let embedDetectionStatus = true; // Default status aktif
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('toggleembed')
-        .setDescription('Aktifkan atau nonaktifkan pendeteksi embed (khusus untuk admin).')
-        .setDefaultMemberPermissions(0), // Hanya admin yang bisa akses
+        .setDescription('Aktifkan atau nonaktifkan pendeteksi embed (khusus untuk admin).'),
 
     async execute(interaction) {
-        const allowedUserId = process.env.ADMIN_USER_ID; // ID admin dari .env
+        // Cek apakah pengguna memiliki role dengan permission ADMINISTRATOR
+        const member = await interaction.guild.members.fetch(interaction.user.id);
 
-        // Cek apakah ID pengguna yang mengirimkan perintah sesuai dengan yang ada di .env
-        if (interaction.user.id !== allowedUserId) {
+        if (!member.permissions.has('ADMINISTRATOR')) {
             return interaction.reply({
-                content: 'Anda tidak memiliki izin untuk mengubah status pendeteksi embed!',
+                content: 'Anda tidak memiliki izin untuk mengubah status pendeteksi embed.',
                 ephemeral: true,
             });
         }

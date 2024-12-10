@@ -7,12 +7,12 @@ module.exports = {
         .setName('restart')
         .setDescription('Merestart bot (khusus untuk admin).'),
     async execute(interaction) {
-        const allowedUserId = process.env.ADMIN_USER_ID; // Masukkan ID pengguna yang diizinkan di file .env
+        // Cek apakah pengguna memiliki role dengan permission ADMINISTRATOR
+        const member = await interaction.guild.members.fetch(interaction.user.id);
 
-        // Cek apakah pengguna memiliki izin
-        if (interaction.user.id !== allowedUserId) {
+        if (!member.permissions.has('ADMINISTRATOR')) {
             return interaction.reply({
-                content: 'Anda tidak memiliki izin untuk merestart bot!',
+                content: 'Anda tidak memiliki izin untuk merestart bot.',
                 ephemeral: true,
             });
         }

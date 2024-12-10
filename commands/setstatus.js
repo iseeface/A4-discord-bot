@@ -20,12 +20,12 @@ module.exports = {
                 .setDescription('Aktivitas yang ingin ditampilkan. (Opsional)')),
 
     async execute(interaction) {
-        const allowedUserId = process.env.ADMIN_USER_ID; // Mengambil USER_ID dari .env
+        // Cek apakah pengguna memiliki role dengan permission ADMINISTRATOR
+        const member = await interaction.guild.members.fetch(interaction.user.id);
 
-        // Cek apakah ID pengguna yang mengirimkan perintah sesuai dengan yang ada di .env
-        if (interaction.user.id !== allowedUserId) {
+        if (!member.permissions.has('ADMINISTRATOR')) {
             return interaction.reply({
-                content: 'Anda tidak memiliki izin untuk mengatur status bot!',
+                content: 'Anda tidak memiliki izin untuk mengatur status bot.',
                 ephemeral: true,
             });
         }
