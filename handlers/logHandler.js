@@ -37,6 +37,9 @@ module.exports = {
                 .addFields(logDetails.fields || [])
                 .setFooter({ text: footerText || 'Tidak Diketahui' })
                 .setTimestamp(logDetails.timestamp || Date.now());
+                
+                const channel = client.channels.cache.get(channelId);
+                if (!channel) throw new Error(`Channel dengan ID ${channelId} tidak ditemukan.`);
 
             await logChannel.send({ embeds: [embed] });
         } catch (error) {

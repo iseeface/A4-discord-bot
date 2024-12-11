@@ -1,8 +1,9 @@
 const axios = require('axios');
 const { getEmbedDetectionStatus } = require('../commands/toggleembed'); // Import status
+const { sendLog } = require('../handlers/logHandler'); // Import fungsi logging
 
 module.exports = {
-    handleEmbed: async (message) => {
+    handleEmbed: async (message, client) => {
         // Cek apakah pendeteksi embed diaktifkan
         if (!getEmbedDetectionStatus()) return; // Jika nonaktif, keluar dari fungsi
 
@@ -20,20 +21,40 @@ module.exports = {
                 if (isSupported) {
                     try {
                         // Hapus embed otomatis hanya untuk tautan yang didukung
-                        await message.suppressEmbeds(true); 
+                        await message.suppressEmbeds(true);
 
                         // Ambil tautan embed menggunakan API eksternal
-                        const embedUrl = await getEmbedUrl(url);
+                        const embedUrl = await getEmbedUrl(url, client);
 
                         if (embedUrl) {
                             // Kirim tautan embed yang diformat ulang
                             await message.reply(embedUrl);
                         } else {
-                            console.error('URL embed tidak ditemukan.');
+                            const noEmbedMessage = 'URL embed tidak ditemukan.';
+                            console.error(noEmbedMessage);
+
+                            // Kirim log ke channel log
+                            await sendLog(client, process.env.LOG_CHANNEL_ID, {
+                                title: 'Embed Tidak Ditemukan',
+                                description: noEmbedMessage,
+                                color: 0xFFA500,
+                                fields: [{ name: 'URL', value: url, inline: false }],
+                            });
+
                             await message.reply('Maaf, terjadi masalah dalam mengambil embed untuk tautan ini.');
                         }
                     } catch (error) {
-                        console.error('Error saat menangani tautan embed:', error);
+                        const errorMessage = `Error saat menangani tautan embed: ${error.message}`;
+                        console.error(errorMessage);
+
+                        // Kirim log ke channel log
+                        await sendLog(client, process.env.LOG_CHANNEL_ID, {
+                            title: 'Kesalahan Embed Handler',
+                            description: errorMessage,
+                            color: 0xFF0000,
+                            fields: [{ name: 'URL', value: url, inline: false }],
+                        });
+
                         await message.reply('Maaf, terjadi kesalahan saat memproses tautan embed ini. Coba lagi nanti.');
                     }
                 }
@@ -42,7 +63,7 @@ module.exports = {
     },
 };
 
-async function getEmbedUrl(url) {
+async function getEmbedUrl(url, client) {
     try {
         const response = await axios.get(`https://embedez.com/api/v1/providers/combined?q=${encodeURIComponent(url)}`, {
             headers: {
@@ -54,10 +75,31 @@ async function getEmbedUrl(url) {
         if (response.data && response.data.success && response.data.data && response.data.data.key) {
             return `[Klik untuk melihat Tautan](https://embedez.com/embed/${response.data.data.key})`;
         } else {
-            throw new Error('Embed URL tidak ditemukan dalam respons.');
+            const noEmbedMessage = 'Embed URL tidak ditemukan dalam respons.';
+            console.error(noEmbedMessage);
+
+            // Kirim log ke channel log
+            await sendLog(client, process.env.LOG_CHANNEL_ID, {
+                title: 'Embed Tidak Valid',
+                description: noEmbedMessage,
+                color: 0xFFA500,
+                fields: [{ name: 'URL', value: url, inline: false }],
+            });
+
+            throw new Error(noEmbedMessage);
         }
     } catch (error) {
-        console.error('Error saat mengambil URL embed:', error);
+        const apiErrorMessage = `Error saat mengambil URL embed: ${error.message}`;
+        console.error(apiErrorMessage);
+
+        // Kirim log ke channel log
+        await sendLog(client, process.env.LOG_CHANNEL_ID, {
+            title: 'Kesalahan API Embed',
+            description: apiErrorMessage,
+            color: 0xFF0000,
+            fields: [{ name: 'URL', value: url, inline: false }],
+        });
+
         throw error;
     }
 }
