@@ -1,6 +1,7 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const axios = require('axios');
 const moment = require('moment-timezone');
+const { sendLog } = require('../handlers/logHandler');
 moment.locale('id'); // Set locale bahasa Indonesia
 
 module.exports = {
@@ -82,6 +83,19 @@ module.exports = {
 
         } catch (error) {
             console.error('Error saat mengambil waktu adzan:', error);
+
+            // Kirim log error ke log channel
+            const logDetails = {
+                title: 'Error Waktu Adzan',
+                description: `Gagal mengambil waktu adzan untuk lokasi "${location}".`,
+                color: 0xFF0000,
+                fields: [
+                    { name: 'Detail Error', value: error.message || 'Tidak diketahui.' },
+                    { name: 'Lokasi', value: location, inline: true },
+                    { name: 'User ID', value: interaction.user.id, inline: true },
+                ],
+            };
+            await sendLog(interaction.client, process.env.LOG_CHANNEL_ID, logDetails);
 
             // Kirim pesan error ke pengguna
             if (error.response && error.response.data) {
