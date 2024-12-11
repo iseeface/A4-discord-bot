@@ -53,7 +53,7 @@ function scheduleQOTD(client) {
     const formattedHour = utcHour.toString().padStart(2, '0');
     const formattedMinute = utcMinute.toString().padStart(2, '0');
 
-    console.log(`QOTD dijadwalkan setiap hari pada ${formattedHour}:${formattedMinute} WIB.`);
+    console.log(`QOTD dijadwalkan setiap hari pada ${formattedHour}:${formattedMinute} UTC.`);
 }
 
 // Fungsi untuk mendapatkan QOTD untuk pengguna (via perintah), mengirimkan embed

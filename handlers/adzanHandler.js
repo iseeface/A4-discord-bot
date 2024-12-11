@@ -37,21 +37,17 @@ async function sendAdzanReminder(client) {
     }
 
     const now = moment().tz('Asia/Jakarta'); // Pastikan menggunakan waktu Jakarta
-    console.log("Waktu server sekarang (Asia/Jakarta):", now.format('HH:mm')); // Verifikasi waktu server
-
     const timeFormats = ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'];
-    const currentTime = now.format('HH:mm');
 
     for (const timeKey of timeFormats) {
-        const prayerTime = moment(timings[timeKey], 'HH:mm').tz('Asia/Jakarta'); // Konversi waktu adzan ke Jakarta
-        console.log(`Waktu adzan untuk ${timeKey}: ${prayerTime.format('HH:mm')}`); // Verifikasi waktu adzan
+        const prayerTimeString = timings[timeKey];
+        const prayerTime = moment.tz(prayerTimeString, 'HH:mm', 'Asia/Jakarta'); // Gunakan moment.tz untuk memastikan zona waktu yang benar
 
         const diff = prayerTime.diff(now, 'minutes');
-
         const reminderKey = `${timeKey}-${now.format('YYYY-MM-DD')}`;
 
         if (diff === 0 && !reminderCache.has(reminderKey)) {
-            // Kirim pemberitahuan saat waktu adzan tiba dalam bentuk embed
+            console.log(`Mengirim pengingat waktu adzan ${timeKey}: ${prayerTime.format('HH:mm')}`); // Log hanya saat pengingat dikirim
             const embed = new EmbedBuilder()
                 .setColor('#0099ff')
                 .setTitle(`Waktu Adzan ${timeKey}`)
@@ -68,7 +64,7 @@ async function sendAdzanReminder(client) {
             await channel.send({ embeds: [embed] });
             reminderCache.add(reminderKey);
         } else if (diff === 5 && !reminderCache.has(reminderKey)) {
-            // Kirim pengingat 5 menit sebelum waktu adzan dalam bentuk embed
+            console.log(`Mengirim pengingat 5 menit sebelum waktu adzan ${timeKey}: ${prayerTime.format('HH:mm')}`); // Log hanya saat pengingat dikirim
             const embed = new EmbedBuilder()
                 .setColor('#ffcc00')
                 .setTitle(`Pengingat Adzan ${timeKey}`)
@@ -92,11 +88,10 @@ function scheduleAdzanReminder(client) {
     cron.schedule('* * * * *', () => {
         sendAdzanReminder(client);
 
-        // Bersihkan cache setiap tengah malam
         const now = moment().tz('Asia/Jakarta'); // Pastikan menggunakan waktu Jakarta
-        console.log("Waktu sekarang (setiap jam 00:00):", now.format('HH:mm')); // Verifikasi waktu yang digunakan untuk pembersihan cache
 
         if (now.format('HH:mm') === '00:00') {
+            console.log("Membersihkan cache pengingat adzan."); // Log hanya saat tengah malam
             reminderCache.clear();
         }
     });
