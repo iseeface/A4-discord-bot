@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -13,11 +13,22 @@ module.exports = {
             const timeTaken = sent.createdTimestamp - interaction.createdTimestamp;
             const apiLatency = interaction.client.ws.ping;
 
-            // Edit pesan dengan hasil latensi
-            await interaction.editReply(`Pong! 🏓\nLatensi Bot: \`${timeTaken}ms\`\nLatensi API: \`${apiLatency}ms\``);
+            // Membuat embed untuk menampilkan hasil latensi
+            const pingEmbed = new EmbedBuilder()
+                .setColor(0x00FFED)  // Warna embed
+                .setTitle('Pong! 🏓')  // Judul embed
+                .addFields(
+                    { name: 'Latensi Bot', value: `\`${timeTaken}ms\``, inline: true },
+                    { name: 'Latensi API', value: `\`${apiLatency}ms\``, inline: true }
+                )
+                .setTimestamp();  // Waktu timestamp
+
+            // Mengedit pesan dengan embed yang berisi latensi
+            await interaction.editReply({ embeds: [pingEmbed] });
         } catch (error) {
             console.error('Error saat menjalankan perintah ping:', error);
 
+            // Menangani kesalahan dan memberikan respon error kepada pengguna
             if (interaction.replied || interaction.deferred) {
                 await interaction.editReply({ content: 'Terjadi kesalahan saat menjalankan perintah!' });
             } else {

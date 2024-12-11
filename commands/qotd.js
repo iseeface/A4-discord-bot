@@ -7,8 +7,8 @@ module.exports = {
         .setDescription('Minta Quote of the Day (QOTD) dari bot!'),
     async execute(interaction) {
         try {
-            const qotdMessage = await getQOTDForUser(); // Memanggil fungsi untuk mendapatkan QOTD
-            await interaction.reply(qotdMessage); // Mengirimkan QOTD ke pengguna
+            const qotdEmbed = await getQOTDForUser(); // Memanggil fungsi untuk mendapatkan QOTD dalam bentuk embed
+            await interaction.reply(qotdEmbed); // Mengirimkan QOTD yang sudah berbentuk embed ke pengguna
         } catch (error) {
             console.error('Error saat mengirim QOTD:', error);
             await interaction.reply({
