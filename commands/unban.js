@@ -42,7 +42,7 @@ module.exports = {
                 description: `Pengguna dengan ID **${userId}** telah di-unban.`,
                 fields: [
                     { name: 'ID User', value: userId, inline: true },
-                    { name: 'Admin yang Melakukan', value: interaction.user.tag, inline: true },
+                    { name: 'Admin yang Melakukan', value: `<@${interaction.user.id}>`, inline: true },
                 ],
                 userId: interaction.user.id,
                 timestamp: Date.now(),

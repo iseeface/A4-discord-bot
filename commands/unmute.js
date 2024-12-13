@@ -51,7 +51,7 @@ module.exports = {
                 description: `Pengguna **${user.tag}** telah di-unmute.`,
                 fields: [
                     { name: 'User', value: user.tag, inline: true },
-                    { name: 'Admin yang Melakukan', value: interaction.user.tag, inline: true },
+                    { name: 'Admin yang Melakukan', value: `<@${interaction.user.id}>`, inline: true },
                 ],
                 userId: interaction.user.id,
                 timestamp: Date.now(),

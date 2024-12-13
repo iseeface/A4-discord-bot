@@ -37,8 +37,8 @@ module.exports = {
                 title: 'Status Pendeteksi Embed Diubah',
                 description: `Pendeteksi embed telah ${embedDetectionStatus ? '**diaktifkan**' : '**dinonaktifkan**'} oleh ${interaction.user.tag}.`,
                 fields: [
-                    { name: 'Admin yang Melakukan', value: interaction.user.tag, inline: true },
-                    { name: 'Status Pendeteksi Embed', value: embedDetectionStatus ? 'Diaktifkan' : 'Dinonaktifkan', inline: true },
+                    { name: 'Admin', value: `<@${interaction.user.id}>`, inline: true },
+                    { name: 'Status', value: embedDetectionStatus ? 'Diaktifkan' : 'Dinonaktifkan', inline: true },
                 ],
                 userId: interaction.user.id,
                 timestamp: Date.now(),

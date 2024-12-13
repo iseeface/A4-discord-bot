@@ -56,7 +56,7 @@ module.exports = {
                 title: 'Status Bot Diubah',
                 description: `Status bot telah diubah ke **${type}**${activity ? ` dengan aktivitas: ${activity}` : ''}.`,
                 fields: [
-                    { name: 'Admin yang Melakukan', value: interaction.user.tag, inline: true },
+                    { name: 'Admin', value: `<@${interaction.user.id}>`, inline: true },
                     { name: 'Status Baru', value: type, inline: true },
                     { name: 'Aktivitas', value: activity || 'Tidak ada', inline: true },
                 ],
