@@ -1,10 +1,10 @@
-const { SlashCommandBuilder } = require('discord.js');
-require('dotenv').config(); // Memuat konfigurasi dari file .env
+const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
+const { sendLog } = require('../handlers/logHandler');
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('setstatus')
-        .setDescription('Mengatur status bot (khusus untuk admin).')
+        .setDescription('Mengatur status bot.')
         .addStringOption(option =>
             option.setName('type')
                 .setDescription('Jenis status (online, idle, dnd, invisible).')
@@ -14,46 +14,63 @@ module.exports = {
                     { name: 'Idle', value: 'idle' },
                     { name: 'Do Not Disturb', value: 'dnd' },
                     { name: 'Invisible', value: 'invisible' }
-                ))
+                )
+        )
         .addStringOption(option =>
             option.setName('activity')
-                .setDescription('Aktivitas yang ingin ditampilkan. (Opsional)')),
+                .setDescription('Aktivitas yang ingin ditampilkan (opsional).')
+        )
+        .setDefaultPermission(true), // Tampilkan command untuk semua pengguna
 
     async execute(interaction) {
-        // Cek apakah pengguna memiliki role dengan permission ADMINISTRATOR
-        const member = await interaction.guild.members.fetch(interaction.user.id);
-
-        if (!member.permissions.has('ADMINISTRATOR')) {
-            return interaction.reply({
-                content: 'Anda tidak memiliki izin untuk mengatur status bot.',
-                ephemeral: true,
-            });
+        // Periksa izin pengguna
+        if (!interaction.member.permissions.has(PermissionFlagsBits.Administrator)) {
+            return interaction.reply({ content: 'Kamu tidak memiliki izin untuk menggunakan perintah ini.', ephemeral: true });
         }
 
         try {
             const type = interaction.options.getString('type');
-            const activity = interaction.options.getString('activity') || null;
+            const activity = interaction.options.getString('activity');
 
-            // Set status
-            const client = interaction.client;
+            const presenceOptions = { status: type };
 
             if (activity) {
-                client.user.setPresence({
-                    activities: [{ name: activity }],
-                    status: type,
-                });
-            } else {
-                client.user.setPresence({ status: type });
+                presenceOptions.activities = [{ name: activity }];
             }
 
+            await interaction.client.user.setPresence(presenceOptions);
+
             await interaction.reply({
-                content: `Status bot berhasil diatur ke: **${type}**${activity ? ` dengan aktivitas: **${activity}**` : ''}`,
+                content: `Status bot berhasil diatur ke **${type}**${activity ? ` dengan aktivitas **${activity}**` : ''}.`,
                 ephemeral: true,
             });
+
+            console.log(`[INFO] Status bot diubah ke: ${type} ${activity ? `dengan aktivitas: ${activity}` : ''}`);
+
+            // Kirimkan log perubahan status ke channel log
+            const logDetails = {
+                author: {
+                    name: interaction.user.tag,
+                    icon_url: interaction.user.displayAvatarURL(),
+                },
+                title: 'Status Bot Diubah',
+                description: `Status bot telah diubah ke **${type}**${activity ? ` dengan aktivitas: ${activity}` : ''}.`,
+                fields: [
+                    { name: 'Admin', value: `<@${interaction.user.id}>`, inline: true },
+                    { name: 'Status Baru', value: type, inline: true },
+                    { name: 'Aktivitas', value: activity || 'Tidak ada', inline: true },
+                ],
+                userId: interaction.user.id,
+                timestamp: Date.now(),
+            };
+
+            // Kirim log ke channel log
+            sendLog(interaction.client, process.env.LOG_CHANNEL_ID, logDetails);
         } catch (error) {
-            console.error('Error saat mengatur status bot:', error);
+            console.error('[ERROR] Gagal mengatur status bot:', error);
+
             await interaction.reply({
-                content: 'Terjadi kesalahan saat mengatur status bot.',
+                content: 'Terjadi kesalahan saat mengatur status bot. Silakan coba lagi.',
                 ephemeral: true,
             });
         }

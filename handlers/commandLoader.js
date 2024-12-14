@@ -11,6 +11,6 @@ module.exports = {
             commands.push(command.data.toJSON());
         }
 
-        return commands; // Mengembalikan array command untuk pendaftaran
+        console.log('Commands berhasil dimuat dan didaftarkan.');
     },
 };

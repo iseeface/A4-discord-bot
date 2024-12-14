@@ -1,37 +1,33 @@
-const { SlashCommandBuilder } = require('discord.js');
-const { exec } = require('child_process');
-require('dotenv').config();
+const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('restart')
-        .setDescription('Merestart bot (khusus untuk admin).'),
-    async execute(interaction) {
-        // Cek apakah pengguna memiliki role dengan permission ADMINISTRATOR
-        const member = await interaction.guild.members.fetch(interaction.user.id);
+        .setDescription('Merestart bot.')
+        .setDefaultPermission(true), // Tampilkan command untuk semua pengguna
 
-        if (!member.permissions.has('ADMINISTRATOR')) {
-            return interaction.reply({
-                content: 'Anda tidak memiliki izin untuk merestart bot.',
+    async execute(interaction) {
+        // Periksa izin pengguna
+        if (!interaction.member.permissions.has(PermissionFlagsBits.Administrator)) {
+            return interaction.reply({ content: 'Kamu tidak memiliki izin untuk menggunakan perintah ini.', ephemeral: true });
+        }
+
+        try {
+            await interaction.reply({
+                content: 'Merestart bot... Tunggu beberapa saat.',
+                ephemeral: true,
+            });
+
+            console.log(`[INFO] Bot direstart oleh: ${interaction.user.tag}`);
+
+            process.exit(0);
+        } catch (error) {
+            console.error('[ERROR] Gagal merestart bot:', error);
+
+            await interaction.reply({
+                content: 'Terjadi kesalahan saat mencoba merestart bot.',
                 ephemeral: true,
             });
         }
-
-        await interaction.reply({
-            content: 'Merestart bot...',
-            ephemeral: true,
-        });
-
-        // Restart bot menggunakan node.js
-        exec('node bot.js', (error, stdout, stderr) => {
-            if (error) {
-                console.error('Gagal merestart bot:', error);
-                return;
-            }
-            console.log('Bot berhasil direstart:', stdout);
-        });
-
-        // Tutup proses utama
-        process.exit();
     },
 };

@@ -1,18 +1,21 @@
+const { SlashCommandBuilder } = require('@discordjs/builders');
+const { REST } = require('@discordjs/rest');
+const { Routes } = require('discord-api-types/v9');
 require('dotenv').config();
-const { REST, Routes } = require('discord.js');
 
-const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN);
+async function registerCommands(client) {
+    const commands = client.commands.map(command => command.data.toJSON());
+    const rest = new REST({ version: '9' }).setToken(process.env.DISCORD_TOKEN);
 
-(async () => {
     try {
-        console.log('Menghapus semua Slash Command...');
-        const commands = await rest.get(Routes.applicationCommands(process.env.CLIENT_ID));
-        const promises = commands.map(command =>
-            rest.delete(`${Routes.applicationCommands(process.env.CLIENT_ID)}/${command.id}`)
-        );
-        await Promise.all(promises);
-        console.log('Semua Slash Command berhasil dihapus.');
+        console.log('Mendaftarkan slash commands ke Discord...');
+
+        await rest.put(Routes.applicationCommands(client.user.id), { body: commands });
+
+        console.log('Slash commands berhasil didaftarkan!');
     } catch (error) {
-        console.error('Error menghapus Slash Command:', error);
+        console.error('Gagal mendaftarkan commands:', error);
     }
-})();
+}
+
+module.exports = { registerCommands };
