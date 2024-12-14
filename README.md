@@ -1,26 +1,36 @@
-# Discord Bot
+# Personal Bot Discord
 
 Hai, ini adalah Repositori untuk perjalanan bot discord yang saya buat. Kode dalam Repositori ini akan berkembang seiring waktu, jadi pantangi terus ya.
 
-Bot Discord multifungsi yang dirancang untuk memberikan fitur seperti menampilkan embed tautan otomatis, mengatur status bot, mengirim Quote of the Day (QOTD), dan berbagai perintah lainnya.  
+Bot Discord multifungsi yang dirancang untuk memberikan fitur seperti moderasi, menampilkan embed tautan otomatis, mengatur status bot, mengirim Quote of the Day (QOTD), dan berbagai perintah lainnya.  
 
 ## Fitur
 
 - **Perintah Umum:**
-  - `help` - Menampilkan daftar perintah yang tersedia.
-  - `info` - Menampilkan informasi tentang bot.
-  - `ping` - Mengecek respons bot.
-  - `say` - Membuat bot mengirimkan pesan yang ditentukan.
-  - `setstatus` - Mengubah status bot.
-  - `toggleembed` - Mengaktifkan/mematikan fitur embed tautan.
-  - `qotd` - Mengirimkan Quote of the Day secara manual.
-  - `adzan` - Mengirimkan jadwal adzan dari berbagai daerah.
+  - `adzan` - Melihat waktu adzan di lokasi tertentu di seluruh dunia.
+  - `help` - Menampilkan daftar semua perintah.
+  - `info` - Informasi tentang bot ini.
+  - `ping` - Menampilkan latensi bot dan API Discord.
+  - `qotd` - Minta Quote of the Day (QOTD) dari bot!
+  - `say` - Mengirimkan pesan yang Anda tentukan.
+ 
+- **Perintah Moderasi:**
+  - `ban` - Melakukan ban kepada pengguna.
+  - `kick` - Mengeluarkan pengguna dari server.
+  - `mute` - Memberikan mute kepada pengguna.
+  - `purge` - Menghapus sejumlah pesan dalam channel ini.
+  - `purgeafter` - Menghapus pesan setelah pesan tertentu.
+  - `restart` - Merestart bot.
+  - `setstatus` - Mengatur status bot.
+  - `timeout` - Memberikan timeout kepada pengguna.
+  - `toggleembed` - Aktifkan atau nonaktifkan pendeteksi embed.
+  - `unban` - Membuka ban dari pengguna tertentu.
+  - `unmute` - Menghapus mute dari pengguna tertentu.
+  - `untimeout` - Menghapus timeout dari pengguna tertentu.
 
 - **Fitur Otomatis:**
   - Embed otomatis untuk tautan dari platform tertentu seperti Instagram, TikTok, X, Reddit, dan lainnya.
   - Pengiriman otomatis QOTD (Quote of the Day) berdasarkan jadwal.
-  - Pengingat jadwal adzan dan sholat.
-
 
 ## Persyaratan Sistem
 
