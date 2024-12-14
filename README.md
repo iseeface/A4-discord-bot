@@ -67,7 +67,9 @@ Bot Discord multifungsi yang dirancang untuk memberikan fitur seperti moderasi, 
 - axios - Untuk pengambilan data dari API.
 - dotenv - Untuk pengelolaan variabel lingkungan.
 - moment-timezone - Untuk pengaturan waktu otomatis QOTD.
+- ms - Untuk mengonversi durasi waktu.
 - node-cron - Untuk penjadwalan tugas otomatis.
+
 
 ## Kontribusi
 Kontribusi sangat diterima! Silakan buat pull request untuk perubahan besar atau kirimkan issue untuk melaporkan bug.
