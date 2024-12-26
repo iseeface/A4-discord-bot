@@ -5,7 +5,8 @@ module.exports = {
     name: 'messageDelete',
     once: false,
     async execute(client, deletedMessage) {
-        if (!deletedMessage || !deletedMessage.author) return; // Jika pesan tidak valid atau tidak ada
+        // Pastikan pesan valid dan bukan dari bot
+        if (!deletedMessage || !deletedMessage.author || deletedMessage.author.bot) return;
 
         const logChannelId = process.env.LOG_CHANNEL_ID; // Ambil ID channel log
 
