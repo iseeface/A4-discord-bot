@@ -5,7 +5,8 @@ module.exports = {
     name: 'messageUpdate',
     once: false,
     async execute(client, oldMessage, newMessage) {
-        if (oldMessage.content === newMessage.content) return; // Jika konten pesan tidak berubah
+        // Pastikan pesan bukan dari bot dan konten pesan berubah
+        if (!oldMessage.author || oldMessage.author.bot || oldMessage.content === newMessage.content) return;
 
         const logChannelId = process.env.LOG_CHANNEL_ID; // Ambil ID channel log
 
