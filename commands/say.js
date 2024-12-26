@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require('discord.js');
+const { SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -9,18 +9,26 @@ module.exports = {
                 .setDescription('Pesan yang ingin dikirim oleh bot.')
                 .setRequired(true)),
     async execute(interaction) {
+        // Periksa apakah pengguna memiliki izin ADMIN
+        if (!interaction.member.permissions.has(PermissionFlagsBits.Administrator)) {
+            return interaction.reply({
+                content: 'Kamu tidak memiliki izin untuk menggunakan perintah ini.',
+                ephemeral: true,
+            });
+        }
+
         try {
             // Ambil input pesan dari pengguna
             const messageContent = interaction.options.getString('pesan');
 
-            // Hapus pesan eksekusi (opsional, untuk bot command)
-            await interaction.deferReply({ ephemeral: true });
-
             // Kirim pesan ke channel yang sama
             await interaction.channel.send(messageContent);
 
-            // Balas interaksi tanpa pesan (atau gunakan ephemeral reply)
-            await interaction.deleteReply(); // Hapus jejak eksekusi
+            // Beri notifikasi bahwa pesan telah dikirim
+            await interaction.reply({
+                content: 'Pesan berhasil dikirim.',
+                ephemeral: true, // Hanya pengirim yang bisa melihat balasan ini
+            });
         } catch (error) {
             console.error('Error saat menjalankan perintah /say:', error);
             await interaction.reply({
