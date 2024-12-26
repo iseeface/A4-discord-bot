@@ -11,8 +11,8 @@ module.exports = {
         // Membuat embed untuk informasi bot
         const infoEmbed = new EmbedBuilder()
             .setColor(0x00FFED)
-            .setTitle('Informasi A4 Bot')
-            .setDescription('✨ **A4 Bot** adalah asisten serbaguna yang dirancang untuk menjaga Server Kudet Tech. Bot ini mampu mendeteksi tautan Instagram, TikTok, X (Twitter), Reddit, dan Ifunny, lalu merubahnya menjadi embed otomatis. Fitur lainnya meliputi melihat waktu Adzan, QOTD, dan **bantuan AI** untuk diagnosis teknis.')
+            .setTitle('Informasi <NAMA_BOT> Bot')
+            .setDescription('✨ **<NAMA_BOT>** adalah asisten serbaguna yang dirancang untuk menjaga Server <NAMA_SERVER>. Bot ini mampu mendeteksi tautan Instagram, TikTok, X (Twitter), Reddit, dan Ifunny, lalu merubahnya menjadi embed otomatis. Fitur lainnya meliputi melihat waktu Adzan, QOTD, dan **bantuan AI** untuk diagnosis teknis.')
             .setThumbnail(botAvatar)
             .setFooter({ text: 'Made with ❤️ by asabop' })
             .setTimestamp();
@@ -22,24 +22,24 @@ module.exports = {
             .addComponents(
                 new ButtonBuilder()
                     .setLabel('Donasi')
-                    .setURL('https://saweria.co/donate/kudettech5')
+                    .setURL('<URL_DONASI>')
                     .setStyle(ButtonStyle.Link)
-                    .setEmoji({ id: '1321794204224978954' }),  // Logo Saweria
+                    .setEmoji({ id: '<ID_EMOJI>' }),  // Logo Saweria
                 new ButtonBuilder()
                     .setLabel('YouTube')
-                    .setURL('https://www.youtube.com/@KudetTech')
+                    .setURL('<URL_YOUTUBE>')
                     .setStyle(ButtonStyle.Link)
-                    .setEmoji({ id: '1321808084699451484' }), // Ganti dengan ID emoji custom
+                    .setEmoji({ id: 'ID_EMOJI' }), // Ganti dengan ID emoji custom
                 new ButtonBuilder()
                     .setLabel('Support Server')
-                    .setURL('https://discord.gg/yePzcmdPKs')
+                    .setURL('<URL_SUPPORT_SERVER>')
                     .setStyle(ButtonStyle.Link)
-                    .setEmoji({ id: '1321809105651892235' }),  // Logo Discord
+                    .setEmoji({ id: 'ID_EMOJI' }),  // Logo Discord
                 new ButtonBuilder()
                     .setLabel('Source Code')
-                    .setURL('https://github.com/iseeface/personal-bot-discord')
+                    .setURL('<URL_SOURCE_CODE>')
                     .setStyle(ButtonStyle.Link)
-                    .setEmoji({ id: '1321809108281593886' })  // Logo GitHub
+                    .setEmoji({ id: 'ID_EMOJI' })  // Logo GitHub
             );
 
         // Mengirimkan embed dan button ke pengguna
