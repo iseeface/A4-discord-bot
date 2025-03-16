@@ -1,83 +1,89 @@
-# Personal Bot Discord
+# A4 Discord Bot
 
-Hai, ini adalah Repositori untuk perjalanan bot discord yang saya buat. Kode dalam Repositori ini akan berkembang seiring waktu, jadi pantangi terus ya.
+A multifunctional Discord bot designed to provide features such as moderation, automatic link embedding, bot status management, Quote of the Day (QOTD), and various other commands.
 
-Bot Discord multifungsi yang dirancang untuk memberikan fitur seperti moderasi, menampilkan embed tautan otomatis, mengatur status bot, mengirim Quote of the Day (QOTD), dan berbagai perintah lainnya.  
+## Features
 
-## Fitur
+### **General Commands:**
+- `adzan` - View prayer times for a specific location worldwide.
+- `help` - Display a list of all commands.
+- `info` - Show information about this bot.
+- `ping` - Display bot latency and Discord API response time.
+- `qotd` - Request a Quote of the Day (QOTD) from the bot.
+- `say` - Send a custom message through the bot.
 
-- **Perintah Umum:**
-  - `adzan` - Melihat waktu adzan di lokasi tertentu di seluruh dunia.
-  - `help` - Menampilkan daftar semua perintah.
-  - `info` - Informasi tentang bot ini.
-  - `ping` - Menampilkan latensi bot dan API Discord.
-  - `qotd` - Minta Quote of the Day (QOTD) dari bot!
-  - `say` - Mengirimkan pesan yang Anda tentukan.
- 
-- **Perintah Moderasi:**
-  - `ban` - Melakukan ban kepada pengguna.
-  - `kick` - Mengeluarkan pengguna dari server.
-  - `mute` - Memberikan mute kepada pengguna.
-  - `purge` - Menghapus sejumlah pesan dalam channel ini.
-  - `purgeafter` - Menghapus pesan setelah pesan tertentu.
-  - `restart` - Merestart bot.
-  - `setstatus` - Mengatur status bot.
-  - `timeout` - Memberikan timeout kepada pengguna.
-  - `toggleembed` - Aktifkan atau nonaktifkan pendeteksi embed.
-  - `unban` - Membuka ban dari pengguna tertentu.
-  - `unmute` - Menghapus mute dari pengguna tertentu.
-  - `untimeout` - Menghapus timeout dari pengguna tertentu.
+### **Moderation Commands:**
+- `ban` - Ban a user from the server.
+- `kick` - Remove a user from the server.
+- `mute` - Mute a user.
+- `purge` - Delete a specified number of messages in the current channel.
+- `purge after` - Delete messages after a specific message.
+- `restart` - Restart the bot.
+- `setstatus` - Change the bot's status.
+- `timeout` - Temporarily restrict a user's interaction.
+- `toggle embed` - Enable or disable automatic embed detection.
+- `toggle ai` - Enable or disable the AI feature.
+- `unban` - Remove a ban from a specific user.
+- `unmute` - Remove mute from a user.
+- `untimeout` - Remove timeout from a user.
 
-- **Fitur Otomatis:**
-  - Embed otomatis untuk tautan dari platform tertentu seperti Instagram, TikTok, X, Reddit, dan lainnya.
-  - Pengiriman otomatis QOTD (Quote of the Day) berdasarkan jadwal.
+### **Automated Features:**
+- Automatic embedding for links from supported platforms such as Instagram, TikTok, X, Reddit, and more.
+- Scheduled automatic QOTD (Quote of the Day) posting.
 
-## Persyaratan Sistem
+## System Requirements
+- **Node.js:** v18 or newer
+- **NPM:** v9 or newer
 
-- **Node.js:** v18 atau lebih baru
-- **NPM:** v9 atau lebih baru
+## Installation
 
-## Instalasi
-
-1. **Clone repositori ini:**
-
-   ```
+1. **Clone this repository:**
+   ```bash
    git clone https://github.com/iseeface/personal-bot-discord.git
    cd personal-bot-discord
-2. **Instal dependensi:**
    ```
+2. **Install dependencies:**
+   ```bash
    npm install
-3. **isi file .env:**
    ```
-   Isi sesuai dengan instruksi yang ada pada file .env.text, jangan lupa ganti .env.txt menjadi .env
-4. **Jalankan bot:**
-   ```
+3. **Configure environment variables:**
+   - Fill in the `.env` file according to the instructions provided in `.env.txt`.
+   - Rename `.env.txt` to `.env` after filling in the required values.
+
+4. **Run the bot:**
+   ```bash
    node bot.js
-## Perintah Penting
-- Registrasi Command ke Discord: Gunakan file registerCommands.js untuk mendaftarkan perintah slash ke server.
+   ```
+
+## Important Commands
+
+- **Register Slash Commands to Discord:**
+  Run the following command to register slash commands with Discord:
   ```bash
   node registerCommands.js
+  ```
 
-- Hapus Command dari Discord: Gunakan file deleteCommands.js untuk menghapus semua perintah slash.
+- **Delete All Slash Commands from Discord:**
+  If needed, you can remove all registered commands:
   ```bash
   node deleteCommands.js
+  ```
 
-## Dependensi
-- discord.js - Library utama untuk interaksi dengan Discord API.
-- axios - Untuk pengambilan data dari API.
-- dotenv - Untuk pengelolaan variabel lingkungan.
-- moment-timezone - Untuk pengaturan waktu otomatis QOTD.
-- ms - Untuk mengonversi durasi waktu.
-- node-cron - Untuk penjadwalan tugas otomatis.
+## Dependencies
+- `discord.js` - Main library for interacting with the Discord API.
+- `axios` - Used for fetching data from APIs.
+- `dotenv` - For managing environment variables.
+- `moment-timezone` - Handles timezone adjustments for QOTD scheduling.
+- `ms` - Converts time duration into human-readable format.
+- `node-cron` - Schedules automated tasks.
 
+## Contribution
+Contributions are welcome! If you'd like to improve the bot, feel free to submit a pull request or open an issue to report bugs.
 
-## Kontribusi
-Kontribusi sangat diterima! Silakan buat pull request untuk perubahan besar atau kirimkan issue untuk melaporkan bug.
+1. Fork this repository.
+2. Create a new branch for your changes.
+3. Push your changes to your branch.
+4. Submit a pull request to the main repository.
 
-1. Fork repositori ini.
-2. Buat branch baru untuk perubahan Anda.
-3. Push perubahan ke branch Anda.
-4. Buat pull request ke branch utama repositori ini.
-
-## Lisensi
-Repositori ini menggunakan lisensi [MIT](LICENSE).
+## License
+This repository is licensed under the [MIT License](LICENSE).
