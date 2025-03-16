@@ -37,7 +37,7 @@ module.exports = {
                     .setEmoji({ id: '1322155135505403935' }),  // Logo Discord
                 new ButtonBuilder()
                     .setLabel('Source Code')
-                    .setURL('https://github.com/iseeface/personal-bot-discord')
+                    .setURL('https://github.com/iseeface/A4-discord-bot')
                     .setStyle(ButtonStyle.Link)
                     .setEmoji({ id: '1321809108281593886' })  // Logo GitHub
             );
