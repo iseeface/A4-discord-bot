@@ -1,4 +1,4 @@
-const { EmbedBuilder } = require('discord.js');
+const { WebhookClient } = require('discord.js');
 
 module.exports = {
     sendLog: async (client, channelId, logDetails) => {
@@ -9,11 +9,15 @@ module.exports = {
                 return;
             }
 
-            const logChannel = client.channels.cache.get(channelId);
-            if (!logChannel) {
-                console.error(`Channel log dengan ID ${channelId} tidak ditemukan!`);
+            // Ambil URL webhook dari environment variable
+            const webhookUrl = process.env.LOG_WEBHOOK_URL;
+            if (!webhookUrl) {
+                console.error('URL webhook tidak ditemukan di environment variable!');
                 return;
             }
+
+            // Buat instance WebhookClient
+            const webhookClient = new WebhookClient({ url: webhookUrl });
 
             // Menyiapkan footer
             let footerText = '';
@@ -26,24 +30,26 @@ module.exports = {
             }
 
             // Fallback nilai default untuk logDetails
-            const embed = new EmbedBuilder()
-                .setColor(logDetails.color || 0x00FFED)
-                .setAuthor({
+            const embed = {
+                color: logDetails.color || 0x00FFED,
+                author: {
                     name: logDetails.author?.name || 'Bot System',
-                    iconURL: logDetails.author?.icon_url || client.user.displayAvatarURL(),
-                })
-                .setTitle(logDetails.title || 'Log Notification')
-                .setDescription(logDetails.description || 'Tidak ada deskripsi yang diberikan.')
-                .addFields(logDetails.fields || [])
-                .setFooter({ text: footerText || 'Tidak Diketahui' })
-                .setTimestamp(logDetails.timestamp || Date.now());
-                
-                const channel = client.channels.cache.get(channelId);
-                if (!channel) throw new Error(`Channel dengan ID ${channelId} tidak ditemukan.`);
+                    icon_url: logDetails.author?.icon_url || client.user.displayAvatarURL(),
+                },
+                title: logDetails.title || 'Log Notification',
+                description: logDetails.description || 'Tidak ada deskripsi yang diberikan.',
+                fields: logDetails.fields || [],
+                footer: { text: footerText || 'Tidak Diketahui' },
+                timestamp: logDetails.timestamp ? new Date(logDetails.timestamp).toISOString() : new Date().toISOString(),
+            };
 
-            await logChannel.send({ embeds: [embed] });
+            // Kirim log menggunakan webhook
+            await webhookClient.send({
+                embeds: [embed],
+            });
+
         } catch (error) {
-            console.error(`Error mengirim log ke channel ${channelId}:`, error);
+            console.error('Error mengirim log melalui webhook:', error);
         }
-    }
+    },
 };
