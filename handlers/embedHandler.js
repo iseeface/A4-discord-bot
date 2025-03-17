@@ -1,11 +1,18 @@
 const axios = require('axios');
-const { getEmbedDetectionStatus } = require('../commands/toggleembed'); // Import status
-const { sendLog } = require('../handlers/logHandler'); // Import fungsi logging
+const { sendLog } = require('../handlers/logHandler');
+
+// Status pendeteksi embed (default: aktif)
+let embedDetectionStatus = true;
+
+// Fungsi untuk mengubah status pendeteksi embed
+const setEmbedDetectionStatus = (status) => {
+    embedDetectionStatus = status;
+};
 
 module.exports = {
     handleEmbed: async (message, client) => {
         // Cek apakah pendeteksi embed diaktifkan
-        if (!getEmbedDetectionStatus()) return; // Jika nonaktif, keluar dari fungsi
+        if (!embedDetectionStatus) return; // Jika nonaktif, keluar dari fungsi
 
         // Cek apakah pesan mengandung tautan
         const urlRegex = /(https?:\/\/[^\s]+)/g;
@@ -61,6 +68,11 @@ module.exports = {
             }
         }
     },
+
+    // Ekspor fungsi dan variabel yang diperlukan
+    embedDetectionStatus,
+    getEmbedDetectionStatus: () => embedDetectionStatus,
+    setEmbedDetectionStatus, // Ekspor fungsi untuk mengubah status
 };
 
 async function getEmbedUrl(url, client) {
