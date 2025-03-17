@@ -1,8 +1,31 @@
 # A4 Discord Bot
 
-A multifunctional Discord bot designed to provide features such as moderation, automatic link embedding, bot status management, Quote of the Day (QOTD), and various other commands.
+<p align="center">
+    <a href="https://github.com/iseeface">
+        <img src="https://img.shields.io/badge/GitHub-%23000000.svg?style=for-the-badge&logo=github&logoColor=white" alt="GitHub Badge"/>
+    </a>
+    <a href="https://discord.gg/yePzcmdPKs">
+        <img src="https://img.shields.io/badge/Join%20Server-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white" alt="Join Server"/>
+    </a>
+    <a href="https://nodejs.org/id/blog/release/v20.9.0">
+       <img src="https://img.shields.io/badge/Node.js-20%2B-green?style=for-the-badge&logo=node.js&logoColor=white" alt="Node.js Version"/>
+    <a href="https://github.com/iseeface/A4-discord-bot?tab=MIT-1-ov-file">
+       <img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="MIT License"/>
+</p>
 
-## Features
+## 📋 Table of Contents
+- [Features](#%EF%B8%8F-features)
+- [System Requirements](#-system-requirements)
+- [Installation](#-installation)
+- [Important Commands](#-important-commands)
+- [Dependencies](#-dependencies)
+- [Contribution](#-contribution)
+- [License](#-license)
+
+---
+
+## ⚙️ Features
+A4 Discord Bot is a multifunctional bot with powerful features like **moderation, automatic link embedding, bot status management, Quote of the Day (QOTD), and more**.
 
 ### **General Commands:**
 - `adzan` - View prayer times for a specific location worldwide.
@@ -19,7 +42,8 @@ A multifunctional Discord bot designed to provide features such as moderation, a
 - `purge` - Delete a specified number of messages in the current channel.
 - `purge after` - Delete messages after a specific message.
 - `restart` - Restart the bot.
-- `setstatus` - Change the bot's status.
+- `set status` - Change the bot's status.
+- `set activity` - Change the bot's activity.
 - `timeout` - Temporarily restrict a user's interaction.
 - `toggle embed` - Enable or disable automatic embed detection.
 - `toggle ai` - Enable or disable the AI feature.
@@ -31,11 +55,15 @@ A multifunctional Discord bot designed to provide features such as moderation, a
 - Automatic embedding for links from supported platforms such as Instagram, TikTok, X, Reddit, and more.
 - Scheduled automatic QOTD (Quote of the Day) posting.
 
-## System Requirements
+---
+
+## 🛠 System Requirements
 - **Node.js:** v18 or newer
 - **NPM:** v9 or newer
 
-## Installation
+---
+
+## 🛠 Installation
 
 1. **Clone this repository:**
    ```bash
@@ -55,7 +83,9 @@ A multifunctional Discord bot designed to provide features such as moderation, a
    node bot.js
    ```
 
-## Important Commands
+---
+
+## 📌 Important Commands
 
 - **Register Slash Commands to Discord:**
   Run the following command to register slash commands with Discord:
@@ -69,7 +99,9 @@ A multifunctional Discord bot designed to provide features such as moderation, a
   node deleteCommands.js
   ```
 
-## Dependencies
+---
+
+## 📦 Dependencies
 - `discord.js` - Main library for interacting with the Discord API.
 - `axios` - Used for fetching data from APIs.
 - `dotenv` - For managing environment variables.
@@ -77,7 +109,9 @@ A multifunctional Discord bot designed to provide features such as moderation, a
 - `ms` - Converts time duration into human-readable format.
 - `node-cron` - Schedules automated tasks.
 
-## Contribution
+---
+
+## 🤝 Contribution
 Contributions are welcome! If you'd like to improve the bot, feel free to submit a pull request or open an issue to report bugs.
 
 1. Fork this repository.
@@ -85,5 +119,7 @@ Contributions are welcome! If you'd like to improve the bot, feel free to submit
 3. Push your changes to your branch.
 4. Submit a pull request to the main repository.
 
-## License
+---
+
+## 📜 License
 This repository is licensed under the [MIT License](LICENSE).
