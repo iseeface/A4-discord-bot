@@ -1,4 +1,8 @@
-# A4 Discord Bot
+<p align="center">
+    <a href="https://github.com/iseeface/A4-discord-bot/">
+        <img src="https://raw.githubusercontent.com/iseeface/A4-discord-bot/dev/.github/assets/a4logo.png" alt="A4 Logo"/>
+    </a>
+</p>
 
 <p align="center">
     <a href="https://github.com/iseeface">
@@ -7,10 +11,17 @@
     <a href="https://discord.gg/yePzcmdPKs">
         <img src="https://img.shields.io/badge/Join%20Server-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white" alt="Join Server"/>
     </a>
+    <a href="https://github.com/discordjs/discord.js/">
+        <img src="https://img.shields.io/badge/Discord.js-Docs-blue?style=for-the-badge&logo=discord&logoColor=white" alt="Join Server"/>
+    </a>
     <a href="https://nodejs.org/id/blog/release/v20.9.0">
        <img src="https://img.shields.io/badge/Node.js-20%2B-green?style=for-the-badge&logo=node.js&logoColor=white" alt="Node.js Version"/>
     <a href="https://github.com/iseeface/A4-discord-bot?tab=MIT-1-ov-file">
        <img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="MIT License"/>
+</p>
+
+<p align="center">
+		<a href="https://sillydev.co.uk/"><img src="https://raw.githubusercontent.com/iseeface/A4-discord-bot/dev/.github/assets/poweredbysillydev.png" alt="Silly Dev" height="64"/></a>
 </p>
 
 ## 📋 Table of Contents
